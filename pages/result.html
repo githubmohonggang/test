@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>支付结果</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/icon.css" />
+		<link rel="stylesheet" type="text/css" href="../css/base.css" />
+		<script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				background-color: #FFFFFF;
+				text-align: center;
+			}
+
+			p {
+				color: #3E4155;
+				font-weight: bold;
+				font-size: 0.48rem;
+				padding-top: .22rem;
+			}
+
+			.success,
+			.fail {
+				display: none;
+				padding-top: 3rem;
+			}
+
+			[class='#success'] .success,
+			[class='#fail'] .fail {
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="kingsmall2-header kingsmall2-flex-sb kingsmall2-line-a-b">
+			<div class="back" onclick="history.go(-1)">返回</div>
+			<div>支付结果</div>
+			<div></div>
+		</header>
+		<div class="fail">
+			<i class="kingsmall2-icon-18"></i>
+			<p>支付失败</p>
+		</div>
+		<div class="success">
+			<i class="kingsmall2-icon-19"></i>
+			<p>支付成功</p>
+		</div>
+		<script type="text/javascript">
+			document.body.className = window.parent.location.hash;
+		</script>
+	</body>
+</html>

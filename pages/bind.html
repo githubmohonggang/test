@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>房屋绑定</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />
+    <script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        body {
+            background: #FFFFFF;
+        }
+
+        .select {
+            position: relative;
+            z-index: 2;
+            padding: 0.2rem 0;
+        }
+
+            .select .kingsmall2-button {
+                border-color: #A2A5B3;
+                width: 2.16rem;
+                box-sizing: border-box;
+                padding-right: 0.56rem;
+                padding-left: .2rem;
+                line-height: 0.72rem;
+                background: #FFFFFF;
+                border-radius: 0.08rem;
+                font-size: 0.28rem;
+            }
+
+            .select i {
+                position: absolute;
+                right: 0.16rem;
+                top: 50%;
+                margin-top: -0.08rem;
+            }
+
+        .content {
+            padding: 0.3rem;
+            background-color: #FFFFFF;
+        }
+
+        .card {
+            background: #FFFFFF;
+            box-shadow: 0rem 0.02rem 0.18rem 0rem rgba(173, 173, 173, 0.22);
+            border-radius: 0.16rem;
+            overflow: hidden;
+            margin-bottom: 0.2rem;
+        }
+
+            .card img,
+            .card .img {
+                width: 100%;
+                height: 2.58rem;
+                background-size: cover;
+            }
+
+            .card .text {
+                padding: 0.24rem;
+            }
+
+            .card .kingsmall2-button {
+                background-color: #FFFFFF;
+                border-color: #4C88FF;
+                line-height: 0.56rem;
+                padding: 0 0.22rem;
+                color: #4C88FF;
+                font-size: 0.28rem;
+                border-radius: 0.56rem;
+            }
+
+            .card .title {
+                font-size: 0.32rem;
+                color: #2B394E;
+                width: 4.2rem;
+            }
+
+            .card .kingsmall2-button i {
+                margin-right: 0.08rem;
+                margin-top: -0.08rem;
+            }
+
+            .card .address {
+                padding-top: 0.14rem;
+                color: #525354;
+                font-size: 0.24rem;
+            }
+
+            .card .kingsmall2-icon-1 {
+                display: none;
+            }
+
+            .card.bind .kingsmall2-icon-11 {
+                display: none;
+            }
+
+            .card.bind .kingsmall2-icon-1 {
+                display: inline-block;
+            }
+
+            .card.bind .kingsmall2-button {
+                background-color: #4C88FF;
+                color: #FFFFFF;
+            }
+
+        .kingsmall2-select {
+            width: 100%;
+            height: 0.72rem;
+            background-size: 0.24rem 0.16rem;
+            background-repeat: no-repeat;
+            box-sizing: border-box;
+            padding-right: 0.56rem;
+            padding-left: .2rem;
+            border-radius: 0.04rem;
+            font-size: 0.28rem;
+            background-position: calc(100% - 0.16rem) center;
+            background-color: #FFFFFF;
+            margin: 0.1rem 0 0.15rem 0;
+        }
+
+        .select .kingsmall2-select {
+            width: 1.58rem;
+            margin: 0;
+        }
+
+        input {
+            width: 100%;
+            height: 0.72rem;
+            background: #F7F7F7;
+            border-radius: 0.08rem;
+            padding: 0.16rem .2rem;
+            box-sizing: border-box;
+            margin: 0.1rem 0 0.15rem 0;
+        }
+
+            input::-webkit-input-placeholder {
+                color: #A2A5B3;
+            }
+
+        .up {
+            padding-bottom: 0.4rem;
+            text-align: center;
+            font-size: 0.32rem;
+            color: #3E4155;
+            line-height: 0.44rem;
+            background: #F7F7F7;
+            border-radius: 0.08rem;
+            margin-top: .15rem;
+        }
+
+            .up .title {
+                padding: 0.42rem 0 .16rem 0;
+            }
+
+            .up input {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                opacity: 0;
+            }
+
+        .kingsmall2-button {
+            height: 0.96rem;
+            background-color: #4C88FF;
+            border-radius: 0.48rem;
+            font-size: 0.34rem;
+            font-weight: 500;
+            color: #FFFFFF;
+            line-height: 0.96rem;
+            text-align: center;
+            margin: 0.3rem;
+        }
+
+        .kingsmall2-icon-20, .kingsmall2-icon-21 {
+            position: relative;
+        }
+
+            .kingsmall2-icon-20 .img,
+            .kingsmall2-icon-21 .img {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 1;
+                background-size: cover;
+                background-position: center center;
+                pointer-events: none;
+            }
+    </style>
+</head>
+<body>
+    <header class="kingsmall2-header kingsmall2-flex-sb kingsmall2-line-a-b">
+        <div class="back" onclick="history.go(-1)">返回</div>
+        <div>房屋绑定</div>
+        <div></div>
+    </header>
+    <div class="content">
+        <div class="card bind" id="infor">
+            <div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+            <div class="text">
+                <div class="kingsmall2-flex-sb">
+                    <div class="title kingsmall2-ellipsis">华润二十四城一期华润二十四城一期华润二十四城一期</div>
+                </div>
+                <div class="address kingsmall2-ellipsis">
+                    <i class="kingsmall2-icon-6"></i>
+                    四川省成都市武侯区红牌楼广场甲级写字楼A座1304号四川省成都市武侯区红牌楼广场甲级写字楼A座1304号
+                </div>
+            </div>
+        </div>
+        <div class="select kingsmall2-flex-sb">
+            <select class="kingsmall2-select kingsmall2-icon-17" id="select0" name="select0" onchange="addressGet(this.value,1)"></select>
+            <select class="kingsmall2-select kingsmall2-icon-17" id="select1" name="select1" onchange="addressGet(this.value,2)"></select>
+            <select class="kingsmall2-select kingsmall2-icon-17" id="select2" name="select2" onchange="addressGet(this.value,3)"></select>
+            <select class="kingsmall2-select kingsmall2-icon-17" id="select3" name="select3"></select>
+        </div>
+        <select class="kingsmall2-select kingsmall2-icon-17" name="usertype" id="usertype">
+            <option value="1">业主</option>
+            <option value="2">家属</option>
+            <option value="3">租户</option>
+        </select>
+		<div id="user">
+			<input type="text" placeholder="请输入真实姓名" name="realname" id="realname" value="" />
+			<input type="text" placeholder="请输入身份证号" name="idcard" id="idcard" value="" />
+			<input type="text" placeholder="请输入手机号" name="telphone" id="telphone" value="" />
+			<div class="up" id="img">
+				<div class="title">上传身份证人像面</div>
+				<div class="kingsmall2-icon-20">
+					<input type="file" name="idcardimg1" id="idcardimg1" value="" onchange="fileUp(this,'idcardimg1')" />
+				</div>
+				<div class="title">上传身份证国徽面</div>
+				<div class="kingsmall2-icon-21">
+					<input type="file" name="idcardimg2" id="idcardimg2" value="" onchange="fileUp(this,'idcardimg2')" />
+				</div>
+			</div>
+		</div>
+        <div class="kingsmall2-button" onclick="submint()">提交审核</div>
+    </div>
+    <script type="text/html" id="HTML-infor">
+        <div class="img" style="background-image:url({{=$api.ajax.IP+it.img}});"></div>
+        <div class="text">
+            <div class="kingsmall2-flex-sb">
+                <div class="title kingsmall2-ellipsis">{{=it.villagename}}</div>
+            </div>
+            <div class="address kingsmall2-ellipsis">
+                <i class="kingsmall2-icon-6"></i>
+                {{=it.universityprovince+it.universitycity+it.universitydist+it.address}}
+            </div>
+        </div>
+    </script>
+    <script type="text/html" id="HTML-user">
+       <input type="text" placeholder="请输入真实姓名" name="realname" id="realname" value="{{=it.realname}}" />
+       <input type="text" placeholder="请输入身份证号" name="idcard" id="idcard" value="{{=it.idcardnum}}" />
+       <input type="text" placeholder="请输入手机号" name="telphone" id="telphone" value="{{=it.phone}}" />
+       <div class="up" id="img">
+       	<div class="title">上传身份证人像面</div>
+       	<div class="kingsmall2-icon-20">
+			<div class="img" style="background-image:url({{=$api.ajax.IP+it.idcard1}});"></div>
+       		<input type="file" name="idcardimg1" id="idcardimg1" value="" onchange="fileUp(this,'idcardimg1')" />
+       	</div>
+       	<div class="title">上传身份证国徽面</div>
+       	<div class="kingsmall2-icon-21">
+			<div class="img" style="background-image:url({{=$api.ajax.IP+it.idcard2}});"></div>
+       		<input type="file" name="idcardimg2" id="idcardimg2" value="" onchange="fileUp(this,'idcardimg2')" />
+       	</div>
+       </div>
+    </script>
+    <script type="text/html" id="HTML-select">
+        {{~it:val:i}}
+        <option value="{{=val.id}}">{{=val.name}}</option>
+        {{~}}
+    </script>
+    <script type="text/html" id="HTML-img">
+        <div class="title">上传身份证人像面</div>
+        <div class="kingsmall2-icon-20">
+            <div class="img" style="background-image:url({{=$api.ajax.IP+it.idcardimg1}});"></div>
+            <input type="file" name="idcardimg1" id="idcardimg1" value="" onchange="fileUp(this,'idcardimg1')" />
+        </div>
+        <div class="title">上传身份证国徽面</div>
+        <div class="kingsmall2-icon-21">
+            <div class="img" style="background-image:url({{=$api.ajax.IP+it.idcardimg2}});"></div>
+            <input type="file" name="idcardimg2" id="idcardimg2" value="" onchange="fileUp(this,'idcardimg2')" />
+        </div>
+    </script>
+    <script type="text/javascript">
+        var htmlGet = {
+            select: doT.template($api.byId('HTML-select').innerHTML),
+            img: doT.template($api.byId('HTML-img').innerHTML),
+            infor: doT.template($api.byId('HTML-infor').innerHTML),
+            user: doT.template($api.byId('HTML-user').innerHTML),
+        }, pageData = {
+            idcardimg1: "",
+            idcardimg2: "",
+        }, villageid = $api.paramGet().villageid;
+        //获取小区详情
+        "/wxwebapi/getVillageModelById".ajax({ villageid: villageid }, function (data) {
+            $api.byId('infor').innerHTML = htmlGet.infor(data);
+        });
+		
+		"/wxwebapi/getUsersInfo".ajax({},function(data){
+			pageData.idcardimg1 = data.idcard1;
+			pageData.idcardimg2 = data.idcard2;
+			$api.byId("user").innerHTML = htmlGet.user(data);
+		})
+        //获取下拉数据
+        function addressGet(id, elId) {
+            var fn = arguments.callee;
+            "/wxwebapi/getVillageDataByType".ajax({ villageid: villageid, parentId: id, type: elId }, function (address) {
+                if (address) {
+                    $api.byId('select' + elId).innerHTML = htmlGet.select(address);
+                    if (elId < 3 && address[0] && address[0].id) {
+                        fn(address[0].id, elId + 1);
+                    }
+                }
+            });
+        }
+
+        function fileUp(el, key) {
+            "{FILE}/wxwebApi/uploadImagefile".ajax({
+                File: el.files[0],
+            }, function (e) {
+                pageData[key] = e;
+                $api.byId("img").innerHTML = htmlGet.img(pageData);
+            })
+        }
+        function submint() {
+            "{POST}wxwebApi/postBindRooms".ajax({
+                villageid: villageid,
+                buildingid: $api.byId("select0").value,
+                unitid: $api.byId("select1").value,
+                floorid: $api.byId("select2").value,
+                roomsid: $api.byId("select3").value,
+                realname: $api.byId("realname").value,
+                idcard: $api.byId("idcard").value,
+                telphone: $api.byId("telphone").value,
+                usertype: $api.byId("usertype").value,
+                idcardimg1: pageData.idcardimg1,
+                idcardimg2: pageData.idcardimg2,
+            }, function (ret) {
+                $api.hint("提交成功");
+				setTimeout(function(){
+					$api.open("house.html",{villageid:villageid});
+				},1000)
+            })
+        }
+        addressGet("0", 0)
+    </script>
+</body>
+</html>

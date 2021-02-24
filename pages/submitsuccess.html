@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>支付结果</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="stylesheet" type="text/css" href="../css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />
+    <script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        body {
+            background-color: #FFFFFF;
+            text-align: center;
+        }
+
+        p {
+            color: #3E4155;
+            font-weight: bold;
+            font-size: 0.48rem;
+            padding-top: .22rem;
+        }
+
+        .success, .fail {
+            display: none;
+            padding-top: 3rem;
+        }
+
+        [class='#success'] .success, [class='#fail'] .fail {
+            display: block;
+        }
+
+
+        .kingsmall2-button {
+            height: 0.96rem;
+            background-color: #4C88FF;
+            border-radius: 0.48rem;
+            font-size: 0.34rem;
+            font-weight: 500;
+            color: #FFFFFF;
+            line-height: 0.96rem;
+            text-align: center;
+            margin: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="kingsmall2-header kingsmall2-flex-sb kingsmall2-line-a-b">
+        <div class="back" onclick="history.go(-1)">返回</div>
+        <div>操作结果</div>
+        <div></div>
+    </header>
+    <div class="fail">
+        <i class="kingsmall2-icon-18"></i>
+        <p>资料提交失败!</p>
+    </div>
+    <div class="success">
+        <i class="kingsmall2-icon-19"></i>
+        <p>资料已经提交,等待物业后台审核!</p>
+    </div>
+    <div class="kingsmall2-button" onclick="$api.open('/root.html#index')">返回首页</div>
+    <script type="text/javascript">
+        document.body.className = window.parent.location.hash;
+    </script>
+</body>
+</html>

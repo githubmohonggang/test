@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>物业缴费</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />
+    <script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/md5.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        body {
+            background-color: #FFFFFF;
+        }
+
+        .pads {
+            padding: 0.3rem;
+            padding-bottom: 1.36rem;
+        }
+
+        .all-moeny {
+            height: 1.7rem;
+            background: #4C88FF;
+            box-shadow: 0rem 0.2rem 0.22rem 0.04rem rgba(76, 136, 255, 0.22);
+            border-radius: 0.12rem;
+            text-align: center;
+            margin-bottom: 0.44rem;
+        }
+
+            .all-moeny .name {
+                font-size: 0.26rem;
+                color: #FFFFFF;
+                line-height: 0.36rem;
+                padding-top: 0.4rem;
+            }
+
+            .all-moeny .num {
+                font-size: 0.48rem;
+                font-weight: bold;
+                color: #FFFFFF;
+                line-height: 0.58rem;
+                padding-top: 0.08rem;
+            }
+
+        .yin {
+            line-height: 0.64rem;
+            background: #F8F8F8;
+            border-radius: 0.08rem;
+            font-size: 0.4rem;
+            font-weight: bold;
+            color: #3E4155;
+            line-height: 0.68rem;
+            padding: 0 0.2rem;
+        }
+
+        .times {
+            padding: 0 0.2rem;
+            padding-top: 0.3rem;
+            padding-bottom: 0.08rem;
+        }
+
+            .times .time {
+                padding-bottom: 0.24rem;
+                font-size: 0.28rem;
+                font-weight: 400;
+                color: #6F7181;
+                line-height: 0.4rem;
+            }
+
+                .times .time label {
+                    width: 0.3rem;
+                    height: 0.3rem;
+                    position: relative;
+                    margin: 0 0.2rem;
+                }
+
+                    .times .time label input {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                    }
+
+                        .times .time label i.kingsmall2-icon-12,
+                        .times .time label input:checked ~ i.kingsmall2-icon-13 {
+                            display: none;
+                        }
+
+                        .times .time label input:checked ~ i.kingsmall2-icon-12 {
+                            display: inline-block;
+                        }
+
+        .bottom {
+            height: 1.36rem;
+            background: #FFFFFF;
+            box-shadow: 0rem -0.1rem 0.18rem 0rem rgba(0, 0, 0, 0.1);
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            padding: 0 0.3rem;
+            box-sizing: border-box;
+        }
+
+            .bottom span {
+                font-size: 0.28rem;
+                color: #6F7181;
+                line-height: 0.4rem;
+                vertical-align: bottom;
+            }
+
+            .bottom em {
+                font-size: 0.6rem;
+                font-weight: bold;
+                color: #FF635C;
+                line-height: 0.42rem;
+            }
+
+            .bottom .btn {
+                width: 2.88rem;
+                height: 0.96rem;
+                background: #4C88FF;
+                font-size: 0.34rem;
+                font-weight: bold;
+                color: #FFFFFF;
+                border-radius: 0.96rem;
+                text-align: center;
+                line-height: 0.96rem;
+            }
+
+        .line {
+            height: 0.2rem;
+            background: #F8F8F8;
+            margin: 0.3rem -0.3rem;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="kingsmall2-header kingsmall2-flex-sb kingsmall2-line-a-b">
+        <div class="back" onclick="history.go(-1)">返回</div>
+        <div>物业缴费</div>
+        <div class='right' onclick="$api.open('record.html',{villageid:villageid})">缴费记录</div>
+    </header>
+    <div class="pads" id="list">
+        <!--
+                    <div class="all-moeny">
+                        <p class="name">全部金额</p>
+                        <div class="num">¥1440.00</div>
+                    </div>
+                    <div class="yin kingsmall2-flex-sb">
+                        <span>应缴费</span>
+                        <span>¥1440.00</span>
+                    </div>
+                    <div class="times">
+                        <div class="time kingsmall2-flex-sb"><span>2020年12月</span><span>360.00元</span></div>
+                        <div class="time kingsmall2-flex-sb"><span>2020年11月</span><span>360.00元</span></div>
+                        <div class="time kingsmall2-flex-sb"><span>2020年10月</span><span>360.00元</span></div>
+                        <div class="time kingsmall2-flex-sb"><span>2020年9月</span><span>360.00元</span></div>
+                        <div class="time kingsmall2-flex-sb"><span>2020年8月</span><span>360.00元</span></div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="yin kingsmall2-flex-sb">
+                        <span>预缴费</span>
+                        <span>¥1440.00</span>
+                    </div>
+                    <div class="times">
+
+                        <div class="time kingsmall2-flex-sb"><span>2021年1月</span><span>360.00元<label for="">
+                                    <input type="checkbox">
+                                    <i class="kingsmall2-icon-13"></i>
+                                    <i class="kingsmall2-icon-12"></i>
+                                </label></span></div>
+                        <div class="time kingsmall2-flex-sb"><span>2021年2月</span><span>360.00元<label for="">
+                                    <input type="checkbox">
+                                    <i class="kingsmall2-icon-13"></i>
+                                    <i class="kingsmall2-icon-12"></i>
+                                </label></span></div>
+                        <div class="time kingsmall2-flex-sb"><span>2021年3月</span><span>360.00元<label for="">
+                                    <input type="checkbox">
+                                    <i class="kingsmall2-icon-13"></i>
+                                    <i class="kingsmall2-icon-12"></i>
+                                </label></span></div>
+                        <div class="time kingsmall2-flex-sb"><span>2021年4月</span><span>360.00元<label for="">
+                                    <input type="checkbox">
+                                    <i class="kingsmall2-icon-13"></i>
+                                    <i class="kingsmall2-icon-12"></i>
+                                </label></span></div>
+                    </div>
+                    <div class="kingsmall2-flex-sb bottom">
+                        <div>
+                            <span>缴费总额 ¥</span>
+                            <em>1800.00</em>
+                        </div>
+                        <div class="btn">
+                            去缴费
+                        </div> -->
+    </div>
+    </div>
+    <script type="text/html" id="HTML-list">
+        <div class="all-moeny">
+            <p class="name">全部金额</p>
+            <div class="num">¥{{=it.totalAmount}}</div>
+        </div>
+        <div class="yin kingsmall2-flex-sb">
+            <span>应缴费</span>
+            <span>¥{{=it.payAmount}}</span>
+        </div>
+        <div class="times">
+            {{~it.payList:val:i}}
+            <div class="time kingsmall2-flex-sb"><span>{{=val.year}}年{{=val.month}}月</span><span>{{=val.property}}元</span></div>
+            {{~}}
+			{{?!it.payList ||!it.payList.length}}
+				<div class="empty"></div>
+			{{?}}
+        </div>
+        <div class="line"></div>
+        <div class="yin kingsmall2-flex-sb">
+            <span>预缴费</span>
+            <span>¥{{=it.prePayAmount}}</span>
+        </div>
+        <div class="times">
+            {{~it.prePayList:val:i}}
+            <div class="time kingsmall2-flex-sb">
+                <span>{{=val.year}}年{{=val.month}}月</span><span>
+                    {{=val.property}}元<label>
+                        <input name="time" type="checkbox" value="[{{=val.userscostid||''}},{{=val.property||0}}]" onchange="moneyGet()">
+                        <i class="kingsmall2-icon-13"></i>
+                        <i class="kingsmall2-icon-12"></i>
+                    </label>
+                </span>
+            </div>
+            {{~}}
+			{{?!it.prePayList ||!it.prePayList.length}}
+				<div class="empty"></div>
+			{{?}}
+        </div>
+        <div class="kingsmall2-flex-sb bottom">
+            <div>
+                <span>缴费总额 ¥</span>
+                <em id="money">0.00</em>
+            </div>
+            <div class="btn" onclick="goPay()">
+                去缴费
+            </div>
+        </div>
+    </script>
+    <script type="text/javascript">
+        var htmlGet = {
+            list: doT.template($api.byId('HTML-list').innerHTML),
+        }, roomsid = $api.paramGet().roomsid, villageid = $api.paramGet().villageid;
+        "/wxwebapi/getShouldUserCost".ajax({
+            roomsid: roomsid,
+        }, function (ret) {
+            $api.byId("list").innerHTML = htmlGet.list(ret);
+        })
+        function moneyGet() {
+            var times = $api.domAll('input[name="time"]');
+            var money = 0, ids = [];
+            for (var i = 0; i < times.length; i++) {
+                if (times[i].checked) {
+                    var val = JSON.parse(times[i].value);
+                    money += val[1];
+                    ids.push(val[0]);
+                }
+            }
+            $api.byId('money').innerHTML = money.toFixed(2);
+            return ids;
+        }
+
+        //获取随机字符串
+        var nonceStrGet = function (num) {
+            var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var maxPos = $chars.length;
+            var noceStr = "";
+            for (i = 0; i < (num || 32); i++) {
+                noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));
+            }
+            return noceStr;
+        }
+
+        //获取时间戳
+        var timeStampGet = function () {
+            var timestamp = Date.parse(new Date()).toString();
+            var timestampstring = timestamp.substr(0, 10); //一定要转换字符串
+            return timestampstring;
+        }
+
+        function onBridgeReady(data) {
+            var ts = timeStampGet();
+            var nonceStr = nonceStrGet();
+            var signok = "appId=" + data.mch_id + "&timeStamp=" + ts + "&nonceStr=" + nonceStr + "&package=" + data.prepay_id + "&signType=MD5";
+            // signok += "&key=xxxxxxxxxxxx";
+            // var signok = "appid="+data.mch_id+"&noncestr="+nonceStr+"&package="+data.prepay_id+"&partnerid="+data.mch_id+"&prepayid="+data.prepay_id+"&timestamp="+ts+"&key=qaz741wsx852edc963rfv123tgb456yh";
+            WeixinJSBridge.invoke(
+                'getBrandWCPayRequest', {
+                "appId": data.mch_id,     //公众号名称，由商户传入
+                "timeStamp": ts,         //时间戳，自1970年以来的秒数
+                "nonceStr": nonceStr, //随机串
+                "package": data.prepay_id,
+                "signType": "MD5",         //微信签名方式：
+                "paySign": hex_md5(signok) //微信签名
+            }, function (res) {
+                // if(res.err_msg == "get_brand_wcpay_request:ok" ){
+                // // 使用以上方式判断前端返回,微信团队郑重提示：
+                // //res.err_msg将在用户支付成功后返回ok，但并不保证它绝对可靠。
+                // }else{
+
+                // }
+                $api.open("result.html#" + (res.err_msg == "get_brand_wcpay_request:ok" ? "success" : "fail"))
+            });
+        }
+        function goPay() {
+            "/wxwebapi/gotoPayUserCostList".ajax({
+                roomsid: roomsid,
+                preusercostid: moneyGet().join(','),
+            }, function (ret) {
+                if (typeof WeixinJSBridge == "undefined") {
+                    if (document.addEventListener) {
+                        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                    } else if (document.attachEvent) {
+                        document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                    }
+                } else {
+                    onBridgeReady();
+                }
+            })
+        }
+    </script>
+</body>
+</html>

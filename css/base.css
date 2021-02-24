@@ -1,0 +1,314 @@
+html{
+	font-family: PingFang SC;
+}
+html,body,iframe,header,section,footer,div,ul,ol,li,img,a,span,em,del,legend,center,strong,var,fieldset,form,label,dl,dt,dd,cite,input,hr,time,mark,code,figcaption,figure,textarea,h1,h2,h3,h4,h5,h6,p{
+	margin:0;
+	border:0;
+	padding:0;
+	font-style:normal;
+}
+select,input,textarea{
+	-webkit-touch-callout:none;
+	-webkit-text-size-adjust:none;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+	-webkit-user-select:none;
+	background-color:transparent;
+	appearance:none;
+	-webkit-appearance:none;
+	outline:none;
+	margin:0;
+	padding:0;
+	font-style:normal;
+}
+body{
+	font-size:12px;
+	padding: 0;
+}
+nav,article,aside,details,main,header,footer,section,fieldset,figcaption,figure{
+	display: block;
+}
+img,a,button,em,del,strong,var,label,cite,small,time,mark,code,textarea{
+	display:inline-block;
+}
+header,section,footer {
+	position:relative;
+}
+textarea{
+	resize:none;/*静止文本域拉伸*/
+}
+ol,ul{
+	list-style:none;
+}
+input,button,textarea {
+	border:0;
+	margin:0;
+	padding:0;
+	font-size:1em;
+	line-height:1em;
+	-webkit-appearance:none;
+	outline:none;
+	background-color:rgba(0, 0, 0, 0);
+}
+input::-webkit-input-placeholder/*默认input字体的颜色*/
+{
+	color:#E6EAEB;
+}
+span{
+	display:inline-block;
+}
+a:active, a:hover {
+  outline: 0;
+}
+a, a:visited{
+	text-decoration:none;
+}
+
+label, .wordWrap{
+    word-wrap: break-word;
+    word-break: break-all;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,th {
+  padding: 0;
+}
+img{
+	background-color: aliceblue;
+}
+.kingsmall2-ellipsis{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  }
+[class*='ellipsis-']{
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  overflow:hidden;}
+.kingsmall2-ellipsis-2{
+  -webkit-line-clamp:2;
+  }
+.kingsmall2-ellipsis-3{
+  -webkit-line-clamp:3;
+  }
+.kingsmall2-ellipsis-4{
+  -webkit-line-clamp:4;
+  }
+.kingsmall2-ellipsis-5{
+  -webkit-line-clamp:5;
+}
+.kingsmall2-ellipsis-6{
+  -webkit-line-clamp:6;
+}
+[class*='kingsmall2-line-a'],[class*='kingsmall2-line-b']{
+	position:relative;
+}
+[class*='kingsmall2-line-a-']:after,[class*='kingsmall2-line-b-']:before{
+	content:'';
+	position:absolute;
+}
+[class*='kingsmall2-line-a-l']:after,
+[class*='kingsmall2-line-b-l']:before,
+[class*='kingsmall2-line-a-r']:after,
+[class*='kingsmall2-line-b-r']:before{
+	top:0;
+	bottom:0;
+	width:1px;
+}
+[class*='kingsmall2-line-a-b']:after,
+[class*='kingsmall2-line-b-b']:before,
+[class*='kingsmall2-line-a-t']:after,
+[class*='kingsmall2-line-b-t']:before{
+	left:0;
+	right:0;
+	height:1px;
+}
+
+[class*='kingsmall2-line-a-l']:after,
+[class*='kingsmall2-line-b-l']:before{
+	left:0;
+	background:linear-gradient(right, transparent 50%, #E6EAEB 50%);
+	background:-webkit-linear-gradient(right, transparent 50%, #E6EAEB 50%);
+}
+[class*='kingsmall2-line-a-r']:after,
+[class*='kingsmall2-line-b-r']:before{
+  right:0;
+	background:linear-gradient(left, transparent 50%, #E6EAEB 50%);
+	background:-webkit-linear-gradient(left, transparent 50%, #E6EAEB 50%);
+}
+[class*='kingsmall2-line-a-b']:after,
+[class*='kingsmall2-line-b-b']:before{
+  bottom:0;
+	background:linear-gradient(top, transparent 50%, #E6EAEB 50%);
+	background:-webkit-linear-gradient(top, transparent 50%, #E6EAEB 50%);
+}
+[class*='kingsmall2-line-a-t']:after,
+[class*='kingsmall2-line-b-t']:before{
+  top:0;
+	background:linear-gradient(bottom, transparent 50%, #E6EAEB 50%);
+	background:-webkit-linear-gradient(bottom, transparent 50%, #E6EAEB 50%);
+}
+[class*='kingsmall2-flex']{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:nowrap;
+  align-items:center;
+}
+[class*='kingsmall2-flex-w']{
+  flex-wrap:wrap;
+  align-items:flex-start;
+}
+[class*='kingsmall2-flex-sb']{
+  justify-content:space-between;
+}
+[class*='kingsmall2-flex-ct']{
+  align-items:center;
+  justify-content:center;
+}
+[class*='kingsmall2-flex-end']{
+  justify-content:flex-end;
+}
+.kingsmall2-search{
+  width: 582rpx;
+  height: 64rpx;
+  background: #ffffff;
+  border-radius: 36rpx;
+  box-sizing:border-box;
+  padding:0 26rpx;
+}
+.kingsmall2-search::after{
+  content:attr(data-placeholder);
+  font-size:32rpx;
+  line-height: 64rpx;
+  color: #999999;
+  padding-left:19rpx;
+}
+.kingsmall2-coursex{
+  width:336rpx;
+  background:#FFF;
+  margin:12rpx 0;
+  border-radius:8rpx;
+  overflow:hidden;
+  font-size:24rpx;
+  padding-bottom:18rpx;
+  position:relative;
+}
+.kingsmall2-money::before{
+  content:'¥';
+}
+.kingsmall2-money:empty::before{
+  content:'免费';
+}
+.kingsmall2-img{
+  width:inherit;
+  height:inherit;
+}
+.kingsmall2-gray{
+  color: #999999;
+}
+.kingsmall2-rel{
+  position:relative;
+}
+.kingsmall2-abs{
+  position:absolute;
+}
+.kingsmall2-fixed{
+  position:fixed;
+}
+[class*="kingsmall2-button"],[class*="kingsmall2-select"]{
+  position:relative;
+}
+[class*="kingsmall2-button"] view,
+[class*="kingsmall2-button"] text{
+	position:relative;
+	z-index:1;
+}
+[class*="kingsmall2-button"]::after,[class*="kingsmall2-select"]::before{
+  width:200%;
+  height:200%;
+  content:'';
+  display:block;
+  position:absolute;
+  top:0;
+  left:0;
+  /* border-width:0.02rem; */
+  border-width:1px;
+  border-style:solid;
+  border-color:inherit;
+  -webkit-transform:scale(.5);
+  transform:scale(.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin:0 0;
+  box-sizing:border-box;
+  border-radius:inherit;
+  z-index:0;
+}
+.kingsmall2-header{
+	position:sticky;
+	top:0;
+	font-weight:bold;
+	color: #000000;
+	font-size: 0.37rem;
+	background: #FFFFFF;
+	line-height:.52rem;
+	padding:0.2rem;
+	margin-top:-1px;
+	z-index:99;
+}
+.kingsmall2-header>div{
+	min-width:1rem;
+}
+.kingsmall2-header>div.back{
+	font-weight:normal;
+	font-size: 0.30rem;
+	text-align:left;
+}
+.kingsmall2-header>div.right{
+	color:#4C88FF;
+	font-size: 0.30rem;
+	text-align:right;
+}
+
+.kingsmall2-hint {
+    position: fixed;
+    z-index: 999;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    text-align: center;
+    max-width: 80%;
+}
+.kingsmall2-hint p {
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+    background-color: rgba(17,17,17,.7);
+    padding: .2rem .4rem;
+    border-radius: 0.1rem;
+    font-size: .26rem;
+    text-align: center;
+    max-width: 100%;
+    word-break: break-all;
+    white-space: normal;
+}
+.empty{
+	width:3.14rem;
+	height:2.4rem;
+	background-image: url(empty.png);
+	background-size:100%;
+	position:relative;
+	margin:1rem auto;
+}
+.empty::after{
+	content:'暂无数据～';
+	display:block;
+	position:absolute;
+	bottom:-.4rem;
+	color:#3E4155;
+	font-size:.28rem;
+	left:0;
+	right:0;
+	text-align:center;
+}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>报事报修</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/icon.css" />
+		<link rel="stylesheet" type="text/css" href="../css/base.css" />
+		<script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				background-color: #FFFFFF;
+			}
+
+			.pads {
+				padding: 0.3rem;
+				padding-bottom: 1.56rem;
+			}
+			.kingsmall2-select{
+				border-color:#A2A5B3;
+				display: inline-block;
+				padding: 0.14rem 0.38rem;
+				border-radius: 0.64rem;
+				color: #A2A5B3;
+			}
+			input[type="radio"]:checked+.kingsmall2-select{
+				color: #FFFFFF;
+				background: #4C88FF;
+			}
+			.kingsmall2-button {
+				height: 0.96rem;
+				background-color: #4C88FF;
+				border-radius: 0.48rem;
+				font-size: 0.34rem;
+				font-weight: 500;
+				color: #FFFFFF;
+				line-height: 0.96rem;
+				text-align: center;
+				margin: 0.3rem;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				right: 0;
+			}
+
+			input[type='text'],
+			textarea {
+				width: 100%;
+				height: 0.72rem;
+				background: #F7F7F7;
+				border-radius: 0.08rem;
+				padding: 0.2rem;
+				box-sizing: border-box;
+				margin-top: 0.3rem;
+				font-size: 0.28rem;
+				line-height: 0.4rem;
+
+			}
+
+			input::-webkit-input-placeholder,
+			textarea::-webkit-input-placeholder {
+				color: #A2A5B3;
+			}
+
+			textarea {
+				height: 2.76rem;
+			}
+
+			.up {
+				width: 2.2rem;
+				height: 1.62rem;
+				border: 1px dashed #A2A5B3;
+				border-radius: 0.08rem;
+				text-align: center;
+				background-color: #F7F7F7;
+				margin-top: 0.28rem;
+				position: relative;
+			}
+
+			.up i {
+				margin-top: .48rem;
+			}
+
+			.up p {
+				padding-top: 0.04rem;
+				font-size: 0.24rem;
+				color: #6F7181;
+				line-height: 0.34rem;
+			}
+
+			.up input {
+				width: 100%;
+				height: 100%;
+				opacity: 0;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			.up .img{
+				width:100%;
+				height:100%;
+				position: absolute;
+				left:0;
+				top:0;
+				z-index:1;
+				background-size: cover;
+				background-position:center center;
+			}
+			.kingsmall2-flex-w .img-box{
+				width: 2.2rem;
+				height: 1.62rem;
+				position:relative;
+				margin-top:0.15rem;
+			}
+			.kingsmall2-flex-w .img-box:nth-of-type(3n-1){
+				margin:0 .15rem;
+				margin-top:0.15rem;
+			}
+			.img{
+				width:100%;
+				height:100%;
+				position: absolute;
+				left:0;
+				top:0;
+				z-index:1;
+				background-size: cover;
+				background-position:center center;
+			}
+			.mask{
+				display:none;
+				position:fixed;
+				left:0;top:0;
+				bottom:0;
+				right:0;
+				margin:0;
+				z-index:999;
+				background-color:rgba(0,0,0,0.8);
+			}
+			.mask img{
+				width:90%;
+				height:auto;
+				left:5%;
+				position:absolute;
+				bottom:50%;
+				transform: translateY(50%);
+			}
+			.mask.active{
+				display:block;
+			}
+			.del{
+				position:absolute;
+				left:50%;
+				bottom:0.1rem;
+				width:.36rem;
+				height:.36rem;
+				background-image:url(../css/g1-cha2.png);
+				background-size:100%;
+				z-index:9;
+				margin-left:-0.18rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="kingsmall2-header kingsmall2-flex-sb kingsmall2-line-a-b">
+			<div class="back" onclick="history.go(-1)">返回</div>
+			<div>报事报修</div>
+			<div></div>
+		</header>
+		<div class="pads" id="form">
+			<input type="radio" name="type" id="type1" value="1" onchange="pageData.type=this.value"/>
+			<label class="kingsmall2-select" for="type1">
+				公共区域
+			</label>
+			<input type="radio" name="type" id="type2" value="2" onchange="pageData.type=this.value"/>
+			<label class="kingsmall2-select" for="type2">
+				私人区域
+			</label>
+			<input type="text" placeholder="请输入标题" name="text" id="text" value="" oninput="pageData.title=this.value" />
+			<textarea name="title" id="title" placeholder="请输入内容" cols="30" rows="10" oninput="pageData.content=this.value"></textarea>
+			<div class="kingsmall2-flex-w" id="img">
+			</div>
+			<div class="up">
+				<i class="kingsmall2-icon-7"></i>
+				<p>上传照片</p>
+				<input type="file" name="file" id="file" value="" onchange="fileUp(this)" />
+			</div>
+			<div class="kingsmall2-button" onclick="submint()">提交</div>
+		</div>
+		<div class="mask" id="mask" onclick="imgHiden(this)"></div>
+		<script type="text/html" id="HTML-img">
+			{{~it:val:i}}
+			<div class="img-box">
+				<div class="img" style="background-image:url({{=$api.ajax.IP+val}});" onclick="imgShow('{{=$api.ajax.IP+val}}')"></div>
+				<div class="del" onclick="imgDelete({{=i}})"></div>
+			</div>
+			{{~}}
+		</script>
+		<script type="text/javascript">
+			var htmlGet = {
+				img:doT.template($api.byId('HTML-img').innerHTML),
+			},pageData = {
+				usersvillageid:$api.paramGet().id,
+				type:"",
+				title:"",
+				content:"",
+				imgs:"",
+			},imgs = [];
+			function submint(){
+				if(!pageData.type) return $api.hint('请选择类型');
+				if(!pageData.title) return $api.hint('请输入标题');
+				if(!pageData.content) return $api.hint('请输入内容');
+				pageData.imgs = imgs.join(',');
+				"{POST}/wxwebApi/postMatter".ajax(pageData,function(ret){
+					console.log(ret)
+					$api.hint("提交成功")
+				})
+			}
+			function imgDelete(i){
+				if(confirm("确定删除图片？")){
+					imgs.splice(i,1);
+					$api.byId("img").innerHTML = htmlGet.img(imgs);
+				}
+			}
+			function fileUp(el){
+				"{FILE}/wxwebApi/uploadImagefile".ajax({
+					File:el.files[0],
+				},function(e){
+					imgs.push(e);
+					$api.byId("img").innerHTML = htmlGet.img(imgs);
+				})
+			}
+			function imgShow(url){
+				$api.byId('mask').innerHTML = "<img src='"+url+"' />";
+				$api.addCls($api.byId('mask'),'active');
+			}
+			function imgHiden(el){
+				$api.removeCls(el,'active');
+			}
+		</script>
+	</body>
+</html>

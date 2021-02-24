@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>报事报修列表</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/icon.css" />
+		<link rel="stylesheet" type="text/css" href="../css/base.css" />
+		<script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				background-color: #f8f8f8;
+			}
+
+			.pads {
+				padding: 0 0.3rem;
+			}
+
+			.tab {
+				line-height: 0.96rem;
+				font-size: 0.3rem;
+				font-weight: bold;
+				color: #A2A5B3;
+				margin: 0 -.3rem;
+				padding: 0 0.3rem;
+				background-color: #f0f2f5;
+				text-align: center;
+			}
+
+			.tab>div {
+				flex: 1;
+			}
+
+			.tab .active {
+				color: #4C88FF;
+				position: relative;
+			}
+
+			.tab .active::after {
+				content: '';
+				display: block;
+				position: absolute;
+				width: 0.42rem;
+				height: 0.06rem;
+				background: #4C88FF;
+				border-radius: 2rem;
+				left: 0;
+				right: 0;
+				bottom: 0.16rem;
+				margin: auto;
+			}
+
+			.list {
+				padding: 0.3rem 0;
+			}
+
+			.item {
+				background: #FFFFFF;
+				border-radius: 0.08rem;
+				margin-bottom: 0.3rem;
+			}
+
+			.item .title {
+				font-size: 0.3rem;
+				font-weight: bold;
+				color: #3E4155;
+				line-height: 0.42rem;
+				padding: 0.3rem 0;
+				padding-right: 0.3rem;
+			}
+
+			.item .title span {
+				position: relative;
+				display: inline-block;
+				padding-left: 0.3rem;
+			}
+
+			.item .title span::before {
+				content: '';
+				width: 0.08rem;
+				height: 0.32rem;
+				background: #4C88FF;
+				border-radius: 0.02rem;
+				position: absolute;
+				left: 0;
+				top: 50%;
+				margin-top: -0.16rem;
+			}
+
+			.item .title em {
+				line-height: 0.36rem;
+				border-radius: 0.16rem;
+				border-color: #4C88FF;
+				padding: 0 0.14rem;
+				font-size: 0.2rem;
+				color: #4C88FF;
+			}
+
+			.item .text {
+				padding: 0.22rem 0.3rem;
+				font-size: 0.28rem;
+				color: #6F7181;
+				line-height: 0.4rem;
+			}
+
+			.item .kingsmall2-flex-w {
+				padding: 0 0.3rem;
+			}
+
+			.item .img {
+				width: 1.9rem;
+				height: 1.9rem;
+				background-color: #f8f8f8;
+				margin-right: 0.2rem;
+				margin-bottom: 0.3rem;
+				background-size: cover;
+				border-radius: 0.1rem;
+			}
+
+			.item .img:nth-of-type(3n) {
+				margin-right: 0;
+			}
+
+			.item .time {
+				padding: 0.2rem 0.3rem;
+				background: #E9F0FF;
+				border-radius: 0rem 0rem 0.08rem 0.08rem;
+				font-size: 0.24rem;
+				color: #4C88FF;
+				line-height: 0.34rem;
+			}
+
+			.completed .title span::before {
+				background-color: #A2A5B3;
+			}
+
+			.completed .title em {
+				color: #A2A5B3;
+				border-color: #A2A5B3;
+			}
+
+			.completed .time {
+				background: #EEEEEE;
+				color: #6F7181;
+			}
+			.mask{
+				display:none;
+				position:fixed;
+				left:0;top:0;
+				bottom:0;
+				right:0;
+				margin:0;
+				z-index:999;
+				background-color:rgba(0,0,0,0.8);
+			}
+			.mask img{
+				width:90%;
+				height:auto;
+				left:5%;
+				position:absolute;
+				bottom:50%;
+				transform: translateY(50%);
+			}
+			.mask.active{
+				display:block;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="kingsmall2-header kingsmall2-flex-sb kingsmall2-line-a-b">
+			<div class="back" onclick="history.go(-1)">返回</div>
+			<div>报事报修列表</div>
+			<div></div>
+		</header>
+		<div class="pads">
+			<div class="kingsmall2-flex-sb tab">
+				<div class="active" onclick="listChange(0,this)">全部</div>
+				<div onclick="listChange(1,this)">已提交</div>
+				<div onclick="listChange(2,this)">处理中</div>
+				<div onclick="listChange(3,this)">已完成</div>
+			</div>
+			<div class="list" id="list">
+				<!-- 
+				<div class="item">
+					<div class="title kingsmall2-flex-sb kingsmall2-line-a-b">
+						<span>房屋水压不够</span>
+						<em class="kingsmall2-button">已提交</em>
+					</div>
+					<div class="text">水压不稳，水温就会忽高忽低。这个时候增压泵就解决不了问题了，若想要水温恒定，则需装流量调节装置或更换一台恒温稳定性的燃气热水器。</div>
+					<div class="kingsmall2-flex-w">
+						<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+						<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+						<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+					</div>
+					<div class="time kingsmall2-flex-sb">
+						<span>区域类型：私人区域</span>
+						<span>提交时间：2020-12-16 20:08</span>
+					</div>
+				</div>
+
+				<div class="item ">
+					<div class="title kingsmall2-flex-sb kingsmall2-line-a-b">
+						<span>房屋水压不够</span>
+						<em class="kingsmall2-button">处理中</em>
+					</div>
+					<div class="text">水压不稳，水温就会忽高忽低。这个时候增压泵就解决不了问题了，若想要水温恒定，则需装流量调节装置或更换一台恒温稳定性的燃气热水器。</div>
+					<div class="kingsmall2-flex-w">
+						<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+						<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+						<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+					</div>
+					<div class="time kingsmall2-flex-sb">
+						<span>区域类型：私人区域</span>
+						<span>提交时间：2020-12-16 20:08</span>
+					</div>
+					<div class="time kingsmall2-flex-sb">
+						<span>处理人：王志平</span>
+						<span>联系电话：18382813299</span>
+					</div>
+				</div>
+
+				<div class="item completed">
+					<div class="title kingsmall2-flex-sb kingsmall2-line-a-b">
+						<span>房屋水压不够</span>
+						<em class="kingsmall2-button">已完成</em>
+					</div>
+					<div class="text">水压不稳，水温就会忽高忽低。这个时候增压泵就解决不了问题了，若想要水温恒定，则需装流量调节装置或更换一台恒温稳定性的燃气热水器。</div>
+					<div class="kingsmall2-flex-w">
+						<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+						<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+						<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+					</div>
+					<div class="time kingsmall2-flex-sb">
+						<span>区域类型：私人区域</span>
+						<span>提交时间：2020-12-16 20:08</span>
+					</div>
+					<div class="time kingsmall2-flex-sb">
+						<span>处理人：王志平</span>
+						<span>联系电话：18382813299</span>
+					</div>
+					<div class="time kingsmall2-flex-sb">
+						<span>完成时间：2020-12-16 20:08</span>
+					</div>
+					<div class="time kingsmall2-flex-sb">
+						<span>处理结果：已修复完成,电梯已经正常运行!</span>
+					</div>
+				</div> -->
+			</div>
+		</div>
+		<div class="mask" id="mask" onclick="imgHiden(this)"></div>
+		<script type="text/html" id="HTML-list">
+			{{~it:val:i}}
+			<div class="item {{=3==val.status && 'completed'}}">
+				<div class="title kingsmall2-flex-sb kingsmall2-line-a-b">
+					<span>{{=val.title}}</span>
+					<em class="kingsmall2-button">{{={"1":"已提交","2":"处理中","3":"已完成"}[val.status]}}</em>
+				</div>
+				<div class="text">{{=val.content}}</div>
+				<div class="kingsmall2-flex-w">
+					{{~val.imsgList:img:k}}
+					<div class="img" style="background-image:url({{=$api.ajax.IP+img}});" onclick="imgShow('{{=$api.ajax.IP+img}}')"></div>
+					{{~}}
+				</div>
+				<div class="time kingsmall2-flex-sb">
+					<span>区域类型：{{=val.areatype==1?'公共区域':'私人区域'}}</span>
+					<span>提交时间：{{=(val.createtime||'').formatTime('yyyy-MM-dd hh:mm:ss')}}</span>
+				</div>
+				{{?3==val.status||2==val.status}}
+				<div class="time kingsmall2-flex-sb">
+					<span>处理人：{{=val.workname}}</span>
+					<span>联系电话：{{=val.worktelphone}}</span>
+				</div>
+				{{?}}
+				{{?3==val.status}}
+				<div class="time kingsmall2-flex-sb">
+					<span>完成时间：{{=(val.completetime||'').formatTime('yyyy-MM-dd hh:mm:ss')}}</span>
+				</div>
+				<div class="time kingsmall2-flex-sb">
+					<span>处理结果：{{=val.remark}}</span>
+				</div>
+				{{?}}
+			</div>
+			{{~}}
+			{{?!it ||!it.length}}
+				<div class="empty"></div>
+			{{?}}
+		</script>
+		<script type="text/javascript">
+			var htmlGet = {
+				list:doT.template($api.byId('HTML-list').innerHTML),
+			};
+			function listGet(status){
+				"/wxwebapi/getMatterByUserId".ajax({status:status},function(ret){
+					$api.byId("list").innerHTML = htmlGet.list(ret);
+				});
+			}
+			function listChange(type,el){
+				$api.byId("list").innerHTML = '';
+				$api.removeCls($api.dom('.active'),'active');
+				listGet(type);
+				el.className = 'active';
+			}
+			function imgShow(url){
+				$api.byId('mask').innerHTML = "<img src='"+url+"' />";
+				$api.addCls($api.byId('mask'),'active');
+			}
+			function imgHiden(el){
+				$api.removeCls(el,'active');
+			}
+			listGet(0);
+		</script>
+	</body>
+</html>

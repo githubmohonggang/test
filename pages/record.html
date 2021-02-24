@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>缴费记录</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/icon.css" />
+		<link rel="stylesheet" type="text/css" href="../css/base.css" />
+		<script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				background: #FFFFFF;
+			}
+
+			.select {
+				position: relative;
+				z-index: 2;
+				padding: 0.3rem 0.3rem;
+				background: #F7F7F7;
+			}
+
+			.select i {
+				position: absolute;
+				right: 0.16rem;
+				top: 50%;
+				margin-top: -0.08rem;
+			}
+
+			.content {
+				padding: 0.26rem 0.3rem;
+				background-color: #FFFFFF;
+			}
+
+			.kingsmall2-select {
+				width: 100%;
+				height: 0.72rem;
+				background-size: 0.24rem 0.16rem;
+				background-repeat: no-repeat;
+				box-sizing: border-box;
+				padding-right: 0.56rem;
+				padding-left: .2rem;
+				border-radius: 0.04rem;
+				font-size: 0.28rem;
+				background-position: calc(100% - 0.16rem) center;
+				background-color: #FFFFFF;
+			}
+
+			.select .col-1 {
+				width: 2.94rem;
+			}
+
+			.select .col-2 {
+				width: 2.08rem;
+			}
+
+			.select .col-3 {
+				width: 1.48rem;
+			}
+
+			.name {
+				font-size: 0.28rem;
+				font-weight: bold;
+				color: #3E4155;
+				line-height: 0.4rem;
+			}
+
+			.time {
+				font-size: 0.24rem;
+				font-weight: 400;
+				color: #6F7181;
+				line-height: 0.34rem;
+			}
+
+			.states {
+				width: 1.2rem;
+				font-size: 0.24rem;
+				padding-top: 0.06rem;
+				font-weight: 400;
+				color: #3E4155;
+				line-height: 0.34rem;
+				text-align: center;
+			}
+
+			.content .kingsmall2-flex-sb {
+				padding-left: 0.2rem;
+				box-sizing: border-box;
+				margin-bottom: .32rem;
+			}
+
+			.rec {
+				width: 5.3rem;
+			}
+
+			.content .title {
+				font-size: 0.32rem;
+				font-weight: bold;
+				color: #3E4155;
+				line-height: 0.44rem;
+				margin-bottom: .26rem;
+				padding: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="kingsmall2-header kingsmall2-flex-sb kingsmall2-line-a-b">
+			<div class="back" onclick="history.go(-1)">返回</div>
+			<div>缴费记录</div>
+			<div></div>
+		</header>
+		<div class="select kingsmall2-flex-sb">
+			<select class="kingsmall2-select kingsmall2-icon-17 col-1" name="villageid" id="villageid" onchange="listGet()">
+				<option value="">华润二十四城</option>
+			</select>
+			<select class="kingsmall2-select kingsmall2-icon-17 col-2" name="year" id="year" onchange="listGet()">
+				<option value="2020">2020年</option>
+				<option value="2021" selected="selected">2021年</option>
+				<option value="2022">2022年</option>
+				<!-- option[value="20$@20"]{20$@20年}*6 -->
+			</select>
+			<select class="kingsmall2-select kingsmall2-icon-17 col-3" name="month" id="month" onchange="listGet()">
+				<option value="1">1月</option>
+				<option value="2">2月</option>
+				<option value="3">3月</option>
+				<option value="4">4月</option>
+				<option value="5">5月</option>
+				<option value="6">6月</option>
+				<option value="7">7月</option>
+				<option value="8">8月</option>
+				<option value="9">9月</option>
+				<option value="10">10月</option>
+				<option value="11">11月</option>
+				<option value="12">12月</option>
+				<!-- option[value="$"]{$月}*12 -->
+			</select>
+		</div>
+		<div class="content" id="list">
+			<!-- <div class="title kingsmall2-flex-sb">
+				<span>总计缴费</span>
+				<span>¥10000.00</span>
+			</div>
+			<div class="kingsmall2-icon-b0 kingsmall2-flex-sb">
+				<div class="rec">
+					<div class="name kingsmall2-ellipsis-2">龙城国际五期</div>
+					<div class="time kingsmall2-ellipsis">2020年11月 物管费360.00元</div>
+				</div>
+				<div class="states">预交</div>
+			</div>
+			<div class="kingsmall2-icon-b2 kingsmall2-flex-sb">
+				<div class="rec">
+					<div class="name">龙城国际五期</div>
+					<div class="time">2020年11月 物管费360.00元</div>
+				</div>
+				<div class="states">正常缴</div>
+			</div> -->
+		</div>
+		<script type="text/html" id="HTML-villageid">
+			{{~it:val:i}}<option value="{{=val.villageid}}">{{=val.villagename}}</option>{{~}}
+		</script>
+		<script type="text/html" id="HTML-list">
+				<div class="title kingsmall2-flex-sb">
+					<span>总计缴费</span>
+					<span>¥{{=allMoney}}</span>
+				</div>
+				{{~it:val:i}}
+				<div class="kingsmall2-icon-b{{=val.isprepayment==1?0:2}} kingsmall2-flex-sb">
+					<div class="rec">
+						<div class="name kingsmall2-ellipsis-2">{{=val.villagename + val.buildname + val.unitname + val.floorname + val.roomsname}}</div>
+						<div class="time kingsmall2-ellipsis">{{=val.year}}年{{=val.month}}月 物管费{{=val.property}}元</div>
+					</div>
+					<div class="states">{{=val.isprepayment==1?'预交':'正常缴'}}</div>
+				</div>
+				{{~}}
+				{{?!it ||!it.length}}
+					<div class="empty"></div>
+				{{?}}
+		</script>
+		<script type="text/javascript">
+			var htmlGet = {
+				list:doT.template($api.byId('HTML-list').innerHTML),
+				villageid:doT.template($api.byId('HTML-villageid').innerHTML),
+			},allMoney = 0;
+			"{POST}/wxwebApi/getBindVillageList".ajax({villageid:$api.paramGet().villageid || ''},function(ret){
+				$api.byId("villageid").innerHTML = htmlGet.villageid(ret);
+				if(ret && ret[0]){
+					for (var i = 0; i < ret.length; i++) {
+						allMoney += Number(ret[i].property) || 0;
+					}
+					listGet(ret[0].villageid);
+				}else{
+					allMoney = 0;
+					listGet();
+				}
+			})
+			function listGet(id){
+				"{POST}/wxwebApi/getPayCompleteUserCost".ajax({
+					villageid:id || $api.byId("villageid").value,
+					year:$api.byId("year").value,
+					month:$api.byId("month").value,
+				},function(ret){
+					$api.byId("list").innerHTML = htmlGet.list(ret);
+				})
+			}
+		</script>
+	</body>
+</html>

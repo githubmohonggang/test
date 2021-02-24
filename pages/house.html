@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的房屋</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="../css/icon.css" />
+    <link rel="stylesheet" type="text/css" href="../css/base.css" />
+    <script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+    <style type="text/css">
+        body {
+            background-color: #FFFFFF;
+        }
+
+        .pads {
+            padding: 0.3rem;
+        }
+
+        .house {
+            background: #FFFFFF;
+            box-shadow: 0rem 0.02rem 0.18rem 0rem rgba(173, 173, 173, 0.22);
+            border-radius: 0.08rem;
+            padding: 0.3rem 0.22rem 0.3rem 0.24rem;
+            position: relative;
+        }
+
+            .house + .house {
+                margin-top: 0.3rem;
+            }
+
+        .current .house {
+            box-shadow: 0rem 0.04rem 0.06rem 0rem rgba(121, 166, 255, 0.22), 0rem 0.02rem 0.18rem 0rem rgba(173, 173, 173, 0.22);
+        }
+
+        .house .img {
+            width: 1.6rem;
+            height: 1.6rem;
+            background-size: cover;
+            border-radius: 0.08rem;
+        }
+
+        .house .text {
+            width: 4.54rem;
+        }
+
+        .house .name {
+            font-size: 0.28rem;
+            color: #3E4155;
+            line-height: 0.4rem;
+            padding-bottom: 0.14rem;
+        }
+
+            .house .name span {
+                font-weight: bold;
+            }
+
+        .house .label span {
+            display: inline-block;
+            height: 0.36rem;
+            vertical-align: middle;
+            background: #FFF2DB;
+            border-radius: 0.06rem;
+            font-size: 0.22rem;
+            font-weight: bold;
+            color: #FE8000;
+            line-height: 0.36rem;
+            padding: 0 0.12rem;
+            margin-right: 0.2rem;
+            margin-bottom: 0.14rem;
+        }
+
+            .house .label span:nth-of-type(2n) {
+                background: #FFEAE9;
+                color: #FF4141;
+            }
+
+            .house .label span:nth-last-child {
+                margin: 0;
+            }
+
+        .house .address {
+            align-items: flex-start;
+        }
+
+            .house .address p {
+                width: 4.2rem;
+                font-size: 0.24rem;
+                color: #A2A5B3;
+                line-height: 0.34rem;
+            }
+
+        .house .states {
+            line-height: 0.4rem;
+            background: #FFAC13;
+            border-radius: 0.08rem 0rem 0.08rem 0rem;
+            padding: 0 0.2rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 0.22rem;
+            color: #FFFFFF;
+        }
+
+            .house .states i {
+                display: none;
+            }
+
+        .current .house .states {
+            background: #4C88FF;
+            padding: 0 0.14rem;
+        }
+
+            .current .house .states i {
+                display: inline-block;
+                margin-right: 0.08rem;
+            }
+
+        .current {
+            background-color: #F2F4F5;
+        }
+
+        .btns {
+            padding: 0.3rem 0.6rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .btn {
+            width: 2.6rem;
+            line-height: 0.72rem;
+            background: #FFAC13;
+            border-radius: 0.36rem;
+            font-size: 0.32rem;
+            font-weight: bold;
+            color: #FFFFFF;
+            text-align: center;
+        }
+
+            .btn:nth-of-type(2n) {
+                background-color: #4C88FF;
+            }
+
+        .kingsmall2-icon-0 {
+            display: block;
+            margin: 0.42rem auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="kingsmall2-header kingsmall2-flex-sb kingsmall2-line-a-b">
+        <div class="back" onclick="history.go(-1)">返回</div>
+        <div>我的房屋</div>
+        <div></div>
+    </header>
+    <div class="pads" id="list">
+        <!--<div class="current">
+            <div class="kingsmall2-flex-sb house">
+                <div class="states"><i class="kingsmall2-icon-5"></i>当前房屋</div>
+                <div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+                <div class="text">
+                    <div class="name kingsmall2-ellipsis">
+                        <span>西贵坊小区</span>（1栋2单元1801号）
+                    </div>
+                    <div class="label">
+                        <span>建筑面积：118.56</span><span>入住人数：4人</span>
+                    </div>
+                    <div class="label">
+                        <span>管家电话：182819288211</span>
+                    </div>
+                    <div class="address kingsmall2-flex-sb">
+                        <i class="kingsmall2-icon-6"></i>
+                        <p class="kingsmall2-ellipsis-2">四川省成都市武侯区红牌楼广场甲级写字楼A座1304号</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="kingsmall2-flex-sb btns">
+                <div class="btn" onclick="$api.open('report.html')">报事报修</div>
+                <div class="btn" onclick="$api.open('pay.html')">缴纳物业费</div>
+            </div>
+        </div>-->
+        <!--<div class="kingsmall2-flex-sb house">
+            <div class="states"><i class="kingsmall2-icon-5"></i>审核中</div>
+            <div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+            <div class="text">
+                <div class="name kingsmall2-ellipsis">
+                    <span>西贵坊小区</span>（1栋2单元1801号）
+                </div>
+                <div class="label">
+                    <span>建筑面积：118.56</span><span>入住人数：4人</span>
+                </div>
+                <div class="label">
+                    <span>管家电话：182819288211</span>
+                </div>
+                <div class="address kingsmall2-flex-sb">
+                    <i class="kingsmall2-icon-6"></i>
+                    <p class="kingsmall2-ellipsis-2">四川省成都市武侯区红牌楼广场甲级写字楼A座1304号</p>
+                </div>
+            </div>
+        </div>-->
+        <i class="kingsmall2-icon-0" onclick="$api.open('bind.html')"></i>
+    </div>
+    <script type="text/html" id="HTML-list">
+        {{~it:val:i}}
+        {{?val.isaudit==1}}
+        <div class="current">
+            <div class="kingsmall2-flex-sb house">
+                <div class="states"><i class="kingsmall2-icon-5"></i>当前房屋</div>
+                <div class="img" style="background-image:url({{=$api.ajax.IP+val.img}});"></div>
+                <div class="text">
+                    <div class="name kingsmall2-ellipsis">
+                        <span>{{=val.villagename}}</span>（{{=val.buildname+val.unitname+val.floorname+val.roomsname}}）
+                    </div>
+                    <div class="label">
+                        <span>建筑面积：{{=val.buildarea}}平米</span><span>入住人数：{{=val.peoplenum}}人</span>
+                    </div>
+                    <div class="label">
+                        <span>管家电话：{{=val.linkmethod}}</span>
+                    </div>
+                    <div class="address kingsmall2-flex-sb">
+                        <i class="kingsmall2-icon-6"></i>
+                        <p class="kingsmall2-ellipsis-2">{{=val.universityprovince+val.universitycity+val.universitydist+val.address}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="kingsmall2-flex-sb btns">
+                <div class="btn" onclick="$api.open('report.html',{id:'{{=val.usersvillagesid}}'})">报事报修</div>
+                <div class="btn" onclick="$api.open('pay.html',{roomsid:'{{=val.roomsid}}',id:'{{=val.usersvillagesid}}',villageid:'{{=val.villageid}}'})">缴纳物业费</div>
+            </div>
+        </div>
+        {{??val.isaudit==2}}
+        <div class="kingsmall2-flex-sb house">
+            <div class="states"><i class="kingsmall2-icon-5"></i>审核中</div>
+            <div class="img" style="background-image:url({{=$api.ajax.IP+val.img}});"></div>
+            <div class="text">
+                <div class="name kingsmall2-ellipsis">
+                    <span>{{=val.villagename}}</span>（{{=val.buildname+val.unitname+val.floorname+val.roomsname}}）
+                </div>
+                <div class="label">
+                    <span>建筑面积：{{=val.area}}</span><span>入住人数：{{=val.peoplenum}}人</span>
+                </div>
+                <div class="label">
+                    <span>管家电话：{{=val.linkmethod}}</span>
+                </div>
+                <div class="address kingsmall2-flex-sb">
+                    <i class="kingsmall2-icon-6"></i>
+                    <p class="kingsmall2-ellipsis-2">{{=val.universityprovince+val.universitycity+val.universitydist+val.address}}</p>
+                </div>
+            </div>
+        </div>
+        {{?}}
+        {{~}}
+		{{?!it ||!it.length}}
+			<div class="empty"></div>
+		{{?}}
+        <i class="kingsmall2-icon-0" onclick="pageGo()"></i>
+    </script>
+    <script type="text/javascript">
+        var htmlGet = {
+            list: doT.template($api.byId('HTML-list').innerHTML),
+        }, pageData = {}, villageid = $api.paramGet().villageid;
+        "/wxwebApi/getCurrentBindVillageRooms".ajax({}, function (ret) {
+            $api.byId('list').innerHTML = htmlGet.list(ret);
+        })
+		function pageGo(){
+			if(villageid){
+				$api.open('bind.html',{villageid:villageid})
+			}else{
+				$api.open('../root.html')
+			}
+		}
+    </script>
+</body>
+</html>

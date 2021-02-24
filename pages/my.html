@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>我的</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/icon.css" />
+		<link rel="stylesheet" type="text/css" href="../css/base.css" />
+		<script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				background-color: #FFFFFF;
+			}
+
+			.user {
+				height: 2.4rem;
+			}
+
+			img {
+				width: 100%;
+			}
+
+			.user .kingsmall2-flex {
+				background-color: #4C88FF;
+				padding: 0.48rem 0.3rem;
+				position: fixed;
+				z-index: -1;
+				width: 100%;
+				box-sizing: border-box;
+				left: 0;
+				top: 0;
+				height: inherit;
+			}
+
+			.user .head {
+				width: 1.2rem;
+				height: 1.2rem;
+				background-color: gray;
+				border: .06rem solid #FFFFFF;
+				border-radius: 1.2rem;
+				overflow: hidden;
+				background-size: cover;
+			}
+
+			.user .name {
+				font-size: 0.44rem;
+				font-weight: bold;
+				color: #FFFFFF;
+				line-height: 0.6rem;
+				padding-left: 0.35rem;
+				width: 5rem;
+			}
+
+			.list {
+				padding: 0.1rem 0.3rem;
+				background: #FFFFFF;
+				border-radius: 0.2rem 0.2rem 0rem 0rem;
+				margin-top: -.2rem;
+			}
+
+			.list .kingsmall2-flex-sb {
+				height: 1rem;
+				font-size: 0.28rem;
+				font-weight: bold;
+				color: #3E4155;
+				line-height: 0.4rem;
+			}
+
+			.list i {
+				margin-top: -.06rem;
+			}
+
+			.list span {
+				margin-left: 0.2rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="user">
+			<div class="kingsmall2-flex" id="user">
+				<div class="head" style="background-image:url(../img/编组%209@2x.png);"></div>
+				<div class="name">甜味Moly</div>
+			</div>
+		</div>
+		<div class="list">
+			<div class="kingsmall2-flex-sb kingsmall2-line-a-b" onclick="$api.open('information.html')">
+				<div><i class="kingsmall2-icon-10"></i><span>个人身份证</span></div>
+				<i class="kingsmall2-icon-3"></i>
+			</div>
+			<div class="kingsmall2-flex-sb kingsmall2-line-a-b" onclick="$api.open('house.html')">
+				<div><i class="kingsmall2-icon-4"></i><span>我的房屋信息</span></div>
+				<i class="kingsmall2-icon-3"></i>
+			</div>
+			<div class="kingsmall2-flex-sb kingsmall2-line-a-b" onclick="$api.open('record.html')">
+				<div><i class="kingsmall2-icon-14"></i><span>我的缴费</span></div>
+				<i class="kingsmall2-icon-3"></i>
+			</div>
+			<div class="kingsmall2-flex-sb kingsmall2-line-a-b" onclick="$api.open('list.html')">
+				<div><i class="kingsmall2-icon-2"></i><span>我的报事报修</span></div>
+				<i class="kingsmall2-icon-3"></i>
+			</div>
+
+		</div>
+		<script type="text/html" id="HTML-user">
+			<div class="head" style="background-image:url({{=$api.ajax.IP+it.headimage}});"></div>
+			<div class="name">{{=it.username}}</div>
+		</script>
+		<script type="text/javascript">
+			var htmlGet = {
+				user:doT.template($api.byId('HTML-user').innerHTML),
+			};
+			"/wxwebapi/getUsersInfo".ajax({},function(data){
+				$api.byId("user").innerHTML = htmlGet.user(data);
+			})
+			if (window.parent.location.hash != '#my') {
+				window.parent.location.hash = 'my';
+			}
+		</script>
+	</body>
+</html>

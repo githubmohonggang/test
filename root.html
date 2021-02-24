@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>首页</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="./css/icon.css" />
+		<link rel="stylesheet" type="text/css" href="./css/base.css" />
+		<script src="./js/style.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/function.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			html,
+			body {
+				width: 100%;
+				height: 100%;
+			}
+
+			iframe {
+				display: block;
+				width: 100%;
+				height: calc(100% - 0.98rem - 0.92rem);
+			}
+
+			nav {
+				height: 0.98rem;
+				background: #FFFFFF;
+				box-shadow: 0rem 0.04rem 0.1rem 0rem rgba(0, 0, 0, 0.5);
+				position: relative;
+				z-index: 2;
+			}
+
+			.item {
+				flex: 1;
+				text-align: center;
+				font-size: 0.24rem;
+				font-family: PingFangSC-Regular, PingFang SC;
+				font-weight: 400;
+				color: #9B99A9;
+				line-height: 0.34rem;
+			}
+
+			.item i {
+				display: block;
+				margin: 0.14rem auto 0.06rem auto;
+			}
+
+			.item .active {
+				display: none;
+			}
+
+			.item.active {
+				color: #4C88FF;
+			}
+
+			.item.active .active {
+				display: block;
+			}
+
+			.item.active .normal {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="kingsmall2-header kingsmall2-flex-sb kingsmall2-line-a-b">
+			<div class="back"></div>
+			<div id="pagename">首页</div>
+			<div></div>
+		</header>
+		<iframe src="./pages/index.html"></iframe>
+		<nav class="kingsmall2-flex-ct">
+			<div id="index" class="item active" onclick="change(this)">
+				<i class="kingsmall2-icon-15 normal"></i>
+				<i class="kingsmall2-icon-16 active"></i>
+				<span>首页</span>
+			</div>
+			<div id="my" class="item" onclick="change(this)">
+				<i class="kingsmall2-icon-8 normal"></i>
+				<i class="kingsmall2-icon-9 active"></i>
+				<span>我的</span>
+			</div>
+		</nav>
+		<script type="text/javascript">
+			function change(el, bol) {
+				var tab = {
+						"./pages/index.html": "首页",
+						"./pages/my.html": "我的",
+					},
+					url = ('./pages/' + el.id + '.html');
+				if ('#' + el.id != location.hash || bol) {
+					$api.dom('iframe').src = url;
+				}
+				$api.removeCls($api.dom('.item.active'), 'active');
+				$api.addCls(el, 'active');
+				$api.text($api.dom('title'), tab[url]);
+				$api.text($api.byId('pagename'), tab[url]);
+			}
+			if (location.hash) {
+				change($api.dom(location.hash))
+			}
+			//禁止返回
+			history.pushState(null, null, document.URL);
+			window.addEventListener('popstate', function(e) {
+				if (location.hash) {
+					change($api.dom(location.hash), true)
+				}
+				history.pushState(null, null, document.URL);
+			});
+		</script>
+	</body>
+</html>

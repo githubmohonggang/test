@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>身份证信息</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/icon.css" />
+		<link rel="stylesheet" type="text/css" href="../css/base.css" />
+		<script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				background: #FFFFFF;
+			}
+
+			.content {
+				padding: 0.3rem;
+				background-color: #FFFFFF;
+				padding-top: 0;
+			}
+
+			label {
+				height: 1.24rem;
+				font-size: 0.3rem;
+				font-weight: bold;
+				color: #424559;
+			}
+
+			input {
+				width: 5rem;
+				height: 0.72rem;
+				border-radius: 0.08rem;
+				padding: 0.16rem .2rem;
+				box-sizing: border-box;
+				margin: 0.1rem 0 0.15rem 0;
+			}
+
+			input::-webkit-input-placeholder {
+				color: #A2A5B3;
+			}
+
+			.up {
+				padding-bottom: 0.4rem;
+				text-align: center;
+				font-size: 0.32rem;
+				color: #3E4155;
+				line-height: 0.44rem;
+				background: #F7F7F7;
+				border-radius: 0.08rem;
+				margin-top: .4rem;
+			}
+
+			.up .title {
+				padding: 0.42rem 0 .16rem 0;
+			}
+
+			.up input {
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				opacity: 0;
+				position:relative;
+				z-index:2;
+			}
+
+			.kingsmall2-button {
+				height: 0.96rem;
+				background-color: #4C88FF;
+				border-radius: 0.48rem;
+				font-size: 0.34rem;
+				font-weight: 500;
+				color: #FFFFFF;
+				line-height: 0.96rem;
+				text-align: center;
+				margin: 0.3rem;
+			}
+			.kingsmall2-icon-20,.kingsmall2-icon-21{
+				position:relative;
+			}
+			.kingsmall2-icon-20 .img,
+			.kingsmall2-icon-21 .img{
+				width:100%;
+				height:100%;
+				position: absolute;
+				left:0;
+				top:0;
+				z-index:1;
+				background-size: cover;
+				background-position:center center;
+				pointer-events:none;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="kingsmall2-header kingsmall2-flex-sb kingsmall2-line-a-b">
+			<div class="back" onclick="history.go(-1)">返回</div>
+			<div>身份证信息</div>
+			<div></div>
+		</header>
+		<div class="content" id="user">
+			<label class="kingsmall2-flex-sb kingsmall2-line-a-b">
+				<span>姓名</span>
+				<input type="text" placeholder="请输入真实姓名" name="name" id="name" value="" />
+			</label>
+
+			<label class="kingsmall2-flex-sb kingsmall2-line-a-b">
+				<span>手机号</span>
+				<input type="text" placeholder="请输入手机号" name="tel" id="tel" value="" />
+			</label>
+
+			<label class="kingsmall2-flex-sb kingsmall2-line-a-b">
+				<span>身份证号</span>
+				<input type="text" placeholder="请输入身份证号码" name="idcard" id="idcard" value="" />
+			</label>
+			<div class="up">
+				<div class="title">上传身份证人像面</div>
+				<div class="kingsmall2-icon-20">
+					<input type="file" name="idcard1" id="idcard1" value="" />
+				</div>
+				<div class="title">上传身份证国徽面</div>
+				<div class="kingsmall2-icon-21">
+					<input type="file" name="idcard2" id="idcard2" value="" />
+				</div>
+			</div>
+			<div class="kingsmall2-button">下一步</div>
+		</div>
+		
+		<script type="text/html" id="HTML-user">
+			<label class="kingsmall2-flex-sb kingsmall2-line-a-b">
+				<span>姓名</span>
+				<input type="text" placeholder="请输入真实姓名" name="name" id="name" value="{{=it.realname}}" />
+			</label>
+		
+			<label class="kingsmall2-flex-sb kingsmall2-line-a-b">
+				<span>手机号</span>
+				<input type="text" placeholder="请输入手机号" name="tel" id="tel" value="{{=it.phone}}" />
+			</label>
+		
+			<label class="kingsmall2-flex-sb kingsmall2-line-a-b">
+				<span>身份证号</span>
+				<input type="text" placeholder="请输入身份证号码" name="idcard" id="idcard" value="{{=it.idcardnum}}" />
+			</label>
+			<div class="up">
+				<div class="title">上传身份证人像面</div>
+				<div class="kingsmall2-icon-20">
+					<div class="img" style="background-image:url({{=$api.ajax.IP+it.idcard1}});"></div>
+					<input type="file" name="idcard1" id="idcard1" value="" onchange="fileUp(this,'idcard1')" />
+				</div>
+				<div class="title">上传身份证国徽面</div>
+				<div class="kingsmall2-icon-21">
+					<div class="img" style="background-image:url({{=$api.ajax.IP+it.idcard2}});"></div>
+					<input type="file" name="idcard2" id="idcard2" value="" onchange="fileUp(this,'idcard2')" />
+				</div>
+			</div>
+			<div class="kingsmall2-button" onclick="submint()">保存</div>
+		</script>
+		<script type="text/javascript">
+			var htmlGet = {
+				user:doT.template($api.byId('HTML-user').innerHTML),
+			},pageData = {};
+			"/wxwebapi/getUsersInfo".ajax({},function(data){
+				$api.byId("user").innerHTML = htmlGet.user(pageData = data);
+			})
+			function submint(){
+				
+				"{POST}/wxwebApi/updateUserInfo".ajax({
+					telphone:pageData.phone,
+					idcard:pageData.idcardnum,
+					realname:pageData.realname,
+					idcardimg1:pageData.idcard1,
+					idcardimg2:pageData.idcard2,
+				},function(ret){
+					$api.hint('保存成功');
+					// if(ret)history.go(-1);
+				})
+			}
+			function fileUp(el,key){
+				"{FILE}/wxwebApi/uploadImagefile".ajax({
+					File:el.files[0],
+				},function(e){
+					pageData[key] = e;
+					$api.byId("user").innerHTML = htmlGet.user(pageData);
+				})
+			}
+		</script>
+	</body>
+</html>

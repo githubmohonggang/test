@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>首页</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="../css/icon.css" />
+		<link rel="stylesheet" type="text/css" href="../css/base.css" />
+		<script src="../js/style.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/function.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../js/doT.min.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				background-color: #FFFFFF;
+				background-position: center top;
+				background-repeat: no-repeat;
+				background-size:auto 3.38rem;
+				background-attachment: fixed;
+			}
+
+			banner {
+				display: block;
+				width: 100%;
+				height: 3.38rem;
+				position: relative;
+			}
+
+			.banner {
+				width: 100%;
+				height: 3.38rem;
+				transform: scale(1);
+				background-repeat: no-repeat;
+				transform-origin: center;
+				transition: all .3s ease;
+				background-size:auto 3.38rem;
+				position: fixed;
+				top: 0;
+				z-index: -1;
+			}
+
+			.banner url {
+				display: none;
+			}
+
+			.banner img {
+				width: inherit;
+				height: inherit;
+				position: absolute;
+				z-index: 1;
+			}
+
+			.select {
+				height: 1.35rem;
+				background: #F7F7F7;
+				border-radius: 0.2rem 0.2rem 0rem 0rem;
+				position: relative;
+				z-index: 2;
+				margin-top: -0.23rem;
+				padding: 0 0.3rem;
+			}
+
+			.select .kingsmall2-button {
+				border-color: #A2A5B3;
+				width: 2.16rem;
+				box-sizing: border-box;
+				padding-right: 0.56rem;
+				padding-left: .2rem;
+				line-height: 0.72rem;
+				background: #FFFFFF;
+				border-radius: 0.08rem;
+				font-size: 0.28rem;
+			}
+
+			.select i {
+				position: absolute;
+				right: 0.16rem;
+				top: 50%;
+				margin-top: -0.08rem;
+			}
+
+			.content {
+				padding: 0.3rem;
+				background-color: #FFFFFF;
+			}
+
+			.card {
+				background: #FFFFFF;
+				box-shadow: 0rem 0.02rem 0.18rem 0rem rgba(173, 173, 173, 0.22);
+				border-radius: 0.16rem;
+				overflow: hidden;
+				margin-bottom: 0.3rem;
+			}
+
+			.card img,
+			.card .img {
+				width: 100%;
+				height: 2.58rem;
+				background-size: cover;
+			}
+
+			.card .text {
+				padding: 0.24rem;
+			}
+
+			.card .kingsmall2-button {
+				background-color: #FFFFFF;
+				border-color: #4C88FF;
+				line-height: 0.56rem;
+				padding: 0 0.22rem;
+				color: #4C88FF;
+				font-size: 0.28rem;
+				border-radius: 0.56rem;
+			}
+
+			.card .title {
+				font-size: 0.32rem;
+				color: #2B394E;
+				width: 4.2rem;
+			}
+
+			.card .kingsmall2-button i {
+				margin-right: 0.08rem;
+				margin-top: -0.08rem;
+			}
+
+			.card .address {
+				padding-top: 0.14rem;
+				color: #525354;
+				font-size: 0.24rem;
+			}
+
+			.card .kingsmall2-icon-1 {
+				display: none;
+			}
+
+			.card.bind .kingsmall2-icon-11 {
+				display: none;
+			}
+
+			.card.bind .kingsmall2-icon-1 {
+				display: inline-block;
+			}
+
+			.card.bind .kingsmall2-button {
+				background-color: #4C88FF;
+				color: #FFFFFF;
+			}
+
+			.kingsmall2-select {
+				width: 2.16rem;
+				height: 0.72rem;
+				background-size: 0.24rem 0.16rem;
+				background-repeat: no-repeat;
+				box-sizing: border-box;
+				padding-right: 0.56rem;
+				padding-left: .2rem;
+				border-radius: 0.04rem;
+				font-size: 0.28rem;
+				background-position: calc(100% - 0.16rem) center;
+				background-color: #FFFFFF;
+			}
+		</style>
+	</head>
+	<body>
+		<banner>
+			<div class="banner" id="banner">
+				<url>../img/小区备份@2x.png</url>
+				<url>../img/编组%209@2x.png</url>
+			</div>
+		</banner>
+		<div class="select kingsmall2-flex-sb">
+			<select class="kingsmall2-select kingsmall2-icon-17" id="select0" name="select0" onchange="addressGet(this.value,1)">
+			</select>
+
+			<select class="kingsmall2-select kingsmall2-icon-17" id="select1" name="select1" onchange="addressGet(this.value,2)">
+			</select>
+
+			<select class="kingsmall2-select kingsmall2-icon-17" id="select2" name="select2" onchange="listGet()">
+			</select>
+		</div>
+		<div class="content" id="list">
+			<!-- <div class="card bind">
+				<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+				<div class="text">
+					<div class="kingsmall2-flex-sb">
+						<div class="title kingsmall2-ellipsis">华润二十四城一期华润二十四城一期华润二十四城一期</div>
+						<div class="kingsmall2-button" onclick="$api.open('bind.html')">
+							<i class="kingsmall2-icon-1"></i><i class="kingsmall2-icon-11"></i><span>绑定房屋</span>
+						</div>
+					</div>
+					<div class="address kingsmall2-ellipsis">
+						<i class="kingsmall2-icon-6"></i>
+						四川省成都市武侯区红牌楼广场甲级写字楼A座1304号四川省成都市武侯区红牌楼广场甲级写字楼A座1304号
+					</div>
+				</div>
+			</div>
+			<div class="card">
+				<div class="img" style="background-image:url(../img/小区备份@2x.png);"></div>
+				<div class="text">
+					<div class="kingsmall2-flex-sb">
+						<div class="title kingsmall2-ellipsis">华润二十四城一期华润二十四城一期华润二十四城一期</div>
+						<div class="kingsmall2-button" onclick="$api.open('house.html')">
+							<i class="kingsmall2-icon-1"></i><i class="kingsmall2-icon-11"></i><span>进入小区</span>
+						</div>
+					</div>
+					<div class="address kingsmall2-ellipsis">
+						<i class="kingsmall2-icon-6"></i>
+						四川省成都市武侯区红牌楼广场甲级写字楼A座1304号四川省成都市武侯区红牌楼广场甲级写字楼A座1304号
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<script type="text/html" id="HTML-banner">
+			 {{~it:val:i}}<url>{{=$api.ajax.IP + val.img}}</url>{{~}}
+		</script>
+		<script type="text/html" id="HTML-select">
+			 {{~it:val:i}}<option value="{{=val.id}}">{{=val.name}}</option>{{~}}
+		</script>
+		<script type="text/html" id="HTML-list">
+			 {{~it:val:i}}
+				 <div class="card {{= val.bindNum > 0 || 'bind'}}">
+					<div class="img" style="background-image:url({{= $api.ajax.IP + val.img}});"></div>
+					<div class="text">
+						<div class="kingsmall2-flex-sb">
+							<div class="title kingsmall2-ellipsis">{{= val.villagename}}</div>
+							<div class="kingsmall2-button" onclick="$api.open('{{= val.bindNum > 0 ? 'house' : 'bind'}}.html',{villageid:{{=val.villageid}}})">
+								<i class="kingsmall2-icon-1"></i><i class="kingsmall2-icon-11"></i><span>{{= val.bindNum > 0 ? '进入小区' : '绑定房屋'}}</span>
+							</div>
+						</div>
+						<div class="address kingsmall2-ellipsis">
+							<i class="kingsmall2-icon-6"></i>
+							{{= val.universityprovince + val.universitycity + val.universitydist + val.address}}
+						</div>
+					</div>
+				 </div>
+			 {{~}}
+			 {{?!it ||!it.length}}
+			 	<div class="empty"></div>
+			 {{?}}
+		</script>
+		<script type="text/javascript">
+			var index = 0,bannerEl = $api.byId('banner'),bannerTime,htmlGet = {
+				banner:doT.template($api.byId('HTML-banner').innerHTML),
+				select:doT.template($api.byId('HTML-select').innerHTML),
+				list:doT.template($api.byId('HTML-list').innerHTML),
+			};
+			function setBanner(){
+				if(bannerTime) clearInterval(bannerTime);
+				bannerTime = setInterval((function(e) {
+					var imgs = $api.domAll('#banner url');
+					if (imgs[index]) {
+						var url = imgs[index].innerText;
+						bannerEl.style.transitionDuration = '0.3s';
+						bannerEl.style.transform = 'scale(1)';
+						bannerEl.style.backgroundImage = 'url(' + url + ')';
+						if (imgs.length > 1) {
+							setTimeout(function() {
+								bannerEl.style.transitionDuration = '0s';
+								bannerEl.style.transform = 'scale(0)';
+								bannerEl.style.backgroundImage = 'url(' + url + ')';
+								document.body.style.backgroundImage = 'url(' + url + ')';
+							}, 300)
+							index++;
+						}
+					} else {
+						index = 0;
+						if (imgs[index]) {
+							arguments.callee(1);
+						}
+					}
+					if (!e)
+						return arguments.callee
+				})(), 3800);
+			}
+			//banner
+			"/wxwebapi/getAdvertises".ajax({},function(banner){
+				bannerEl.innerHTML = htmlGet.banner(banner);
+				setBanner();
+			});
+			//获取省市区下拉数据
+			function addressGet(id,elId){
+				var fn = arguments.callee;
+				"/wxwebapi/GetRegionByParentId".ajax({regionid:id},function(address){
+					if(address){
+						$api.byId('select'+elId).innerHTML = htmlGet.select(address);
+						if(elId < 2 && address[0] && address[0].id){
+							fn(address[0].id,elId+1);
+						}else{
+							listGet();
+						}
+					}
+				});
+			}
+			//获取小区列表数据信息
+			function listGet(){
+				"/wxwebapi/getHomeVillageList".ajax({
+					provinceid:$api.byId("select0").value,
+					cityid:$api.byId("select1").value,
+					distid:$api.byId("select2").value
+				},function(list){
+					$api.byId('list').innerHTML = htmlGet.list(list);
+				})
+			}
+			addressGet("0",0)
+			if (window.parent.location.hash != '#index') {
+				window.parent.location.hash = 'index';
+			}
+		</script>
+	</body>
+</html>
